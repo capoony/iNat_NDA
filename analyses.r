@@ -140,6 +140,29 @@ obs.nona %>%
 ## save plot as png
 ggsave("results/most_common_taxa_by_taxon_group.png", width = 20, height = 12)
 
+## now do the same for "scientific_name" and restrict to 20 most common, color by "taxon_group" and facet by "taxon_group"
+obs.nona <- obs %>%
+    filter(!is.na(scientific_name) & !scientific_name == "") %>%
+    group_by(scientific_name, taxon_group) %>%
+    summarise(n = n()) %>%
+    arrange(desc(n))
+
+## now plot most common "scientific_name" and restrict to 20 most common, color by "taxon_group" and facet by "taxon_group"
+obs.nona %>%
+    group_by(taxon_group) %>%
+    slice_max(n, n = 20) %>%
+    ggplot(aes(x = reorder(scientific_name, n), y = n, fill = taxon_group)) +
+    geom_col() +
+    coord_flip() +
+    facet_wrap(~taxon_group, scales = "free_y") +
+    labs(title = "Most Common Taxa by Taxon Group", x = "Scientific Name", y = "Number of Observations") +
+    scale_fill_viridis_d() +
+    theme_bw()
+
+## save plot as png
+ggsave("results/most_common_taxa_by_taxon_group_scientific_name.png", width = 20, height = 12)
+
+
 
 ## now summarise the results in a README.md file
 ## create a README.md file and rename it to README.md
@@ -157,6 +180,8 @@ writeLines("## Most Common Taxa\n", readme)
 writeLines("![Most Common Taxa](results/most_common_taxa.png)\n", readme)
 writeLines("## Most Common Taxa by Taxon Group\n", readme)
 writeLines("![Most Common Taxa by Taxon Group](results/most_common_taxa_by_taxon_group.png)\n", readme)
+writeLines("## Most Common Taxa by Taxon Group (Scientific Name)\n", readme)
+writeLines("![Most Common Taxa by Taxon Group (Scientific Name)](results/most_common_taxa_by_taxon_group_scientific_name.png)\n", readme)
 
 ## close the file
 close(readme)
