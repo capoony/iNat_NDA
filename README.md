@@ -1,4 +1,4 @@
-# Analysis of iNat_project ["Die anderen Museumsbesucher"](https://www.inaturalist.org/projects/die-anderen-museumsbesucher-the-other-museum-visitors?tab=observations) 
+# Analysis of iNat_project ["Die anderen Museumsbesucher"](https://www.inaturalist.org/projects/die-anderen-museumsbesucher-the-other-museum-visitors?tab=observations)
 
 ## Observations by Year and Taxon Group
 
@@ -23,4 +23,8 @@
 ## Most Common Taxa by Taxon Group
 
 ![Most Common Taxa by Taxon Group](results/most_common_taxa_by_taxon_group.png)
+
+## Most Common Taxa by Taxon Group (Scientific Name)
+
+![Most Common Taxa by Taxon Group (Scientific Name)](results/most_common_taxa_by_taxon_group_scientific_name.png)
 
