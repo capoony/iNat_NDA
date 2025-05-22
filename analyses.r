@@ -6,7 +6,8 @@ library(viridis)
 setwd("D:/GitHub/iNat_NDA/")
 
 ## load observations-576350.csv
-obs <- read.csv("data/observations-576350.csv")
+# obs <- read.csv("data/observations-576350.csv")
+obs <- read.csv("data/observations-576348.csv")
 
 ## create results directory
 if (!dir.exists("results")) {
